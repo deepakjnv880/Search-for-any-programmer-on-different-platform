@@ -41,19 +41,19 @@ def different_platform():
 def different_platform_name(username,pname):
 
    if (pname=="codechef"):
-    massage=codechef.codechef_web_scraping(username)
-    return render_template('index.html',msg1=massage)
+	   check1,massage=codechef.codechef_web_scraping(username)
+	   if check1==1:
+		   return render_template('index.html',msg1=massage)
+	   else:
+		   return render_template('index.html',unf=massage)
    else:
-    if (pname=="codeforces"):
-      # massage=JSON.dumps(massage)
-      massage=codeforces.codeforces_web_scraping(username)
-      # massage=massage.decode("utf-8")
-      # massage=JSON.loads(massage)
-      # for i in ma/
-      return render_template('index.html',key1="rating",breaker=":",val1=massage['rating'],key2="organization",val2=massage['organization'],key3="rank",val3=massage['rank'],key4="handle",val4=massage['handle'],key5="friendOfCount",val5=massage['friendOfCount'])
-   # print(massage2)
-   
-   # return redirect(url_for(''))
+	   if (pname=="codeforces"):
+		   check2,massage=codeforces.codeforces_web_scraping(username)
+		   if check2==1:
+			   return render_template('index.html',key1="rating",breaker=":",val1=massage['rating'],key2="organization",val2=massage['organization'],key3="rank",val3=massage['rank'],key4="handle",val4=massage['handle'],key5="friendOfCount",val5=massage['friendOfCount'])
+		   else:
+			   return render_template('index.html',unf=massage)
+
 
 
 
